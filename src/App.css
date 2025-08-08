@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap');
+
+body{
+  background-color: #0b0809;
+  font-family: "Geist Mono", monospace;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+.title{
+  font-family: "Inter Tight", sans-serif;
+}
+
+.proj{
+  font-family: "Mozilla Headline", sans-serif;
+
+}
+
+.name{
+  font-family: "Mozilla Headline", sans-serif;
+
+}
+
+.load{
+  font-family: "Mozilla Headline", sans-serif;
+}
+
+.footerli li{
+  font-family: "Mozilla Headline", sans-serif;
+}
+
+.hero__title__top{
+  font-family: "Mozilla Headline", sans-serif;
+  font-variation-settings:
+    "wdth" 100;
+
+
+}
+.hero__title__bottom{
+  font-family: "Mozilla Headline", sans-serif;
+  font-variation-settings:
+    "wdth" 100;
+
+
+}
+
+@media screen and (max-width: 530px) {
+  .hero__title__top {
+    font-size: 5rem;
+  }
+    .hero__title__bottom{
+    font-size: 5rem;    
+  }
+  .fix{
+    width: 49%;
+  }
+}@media screen and (max-width: 400px) {
+  .hero__title__top {
+    font-size: 5rem;
+  }
+  .hero__title__bottom{
+    font-size: 5rem;    
+  }
+  .fix{
+    width: 50%;
+  }
+}
+@media screen and (max-width: 380px) {
+  .hero__title__top {
+    font-size: 4rem;
+  }
+    .hero__title__bottom{
+    font-size: 4rem;    
+  }
+  .fix{
+    font-size: 1.45rem;
+  }
+}
+
+@media screen and (max-width: 403px) {
+  .fix h1{
+    font-size: 1.25rem;
+  }
+}
