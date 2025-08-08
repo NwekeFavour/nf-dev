@@ -153,7 +153,7 @@ function Home() {
             <div className='lg:w-[80%] w-[90%] md:w-[85%] mx-auto'>
               <p className="m-0 text-blue-50 text-center text-[16px] md:text-[17px]">I’ve evolved from learning the fundamentals of web development, HTML, CSS, and JavaScript—to building interactive, user-focused applications using modern frameworks like <span className='text-gray-500'>React.js, Vue.js, and Next.js</span>. I gradually expanded my skills by exploring responsive design principles, DOM manipulation, and <span className='text-gray-500'>component-based</span> architecture while improving my understanding of clean <span className='text-gray-500'>UI/UX patterns and accessibility</span>.</p>
             </div>
-            <div className='lg:w-[80%] w-[90%] md:w-[85%] mx-auto mt-3'>
+            <div className='lg:w-[80%] w-[90%] md:w-[85%] mx-auto mt-6'>
               <p className="m-0 text-blue-50 text-center text-[16px] md:text-[17px]">Through these experiences, I’ve also developed strong soft skills that have shaped how I approach projects and collaboration. I’ve learned to communicate clearly with team members and clients, <span className='text-gray-500'>manage time</span> effectively under deadlines, adapt quickly to new tools and challenges, and stay committed to problem-solving with a detail-oriented mindset. <span className='text-gray-500'>Working in diverse environments</span> has strengthened my ability to collaborate, stay organized, and take initiative when leading or <span className='text-gray-500'>contributing to tasks</span>.</p>
             </div>
           </div>

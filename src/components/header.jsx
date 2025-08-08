@@ -14,6 +14,14 @@ function Header() {
     setIsOpen(prev => !prev);
   };
 
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+    toggleNav();
+  };
+
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
@@ -94,7 +102,7 @@ function Header() {
           <div className="md:hidden hidden lg:block">
             <div><Link to={"/about"} className="hover:underline text-white">About Me</Link></div>
             <div><a href={"#portfolio"} className="hover:underline text-white">Portfolio</a></div>
-            <div><Link to={"https://x.com/uncleNf"} className="hover:underline text-white">X(fka twitter)</Link></div>
+            <div><Link to={"https://x.com/uncleNf"} className="hover:underline  text-white">X(fka twitter)</Link></div>
             <div><Link to={"https://github.com/NwekeFavour"} className="hover:underline text-white">Github</Link></div>
             <div><Link to={"https://drive.google.com/file/d/13WvVm27GezY-BL-lr36yGNKu4ZVqZ5fF/view?usp=drivesdk"}  className="hover:underline text-white">Resumé</Link></div>
             
@@ -116,22 +124,34 @@ function Header() {
           Close
         </button>
         {[
-          { name: 'About Me', to: '/about-us' },
-          { name: 'Portfolio', to: '#portfolio' },
-          { name: 'X (Twitter)', to: 'https://x.com/uncleNf' },
-          { name: 'Github', to: 'https://github.com/NwekeFavour' },
-          { name: 'Resumé', to: '#' }
+          { name: 'About Me', type: 'link', to: '/about' },
+          { name: 'Portfolio', type: 'scroll', to: 'portfolio' }, // <— scroll type
+          { name: 'X (Twitter)', type: 'link', to: 'https://x.com/uncleNf' },
+          { name: 'Github', type: 'link', to: 'https://github.com/NwekeFavour' },
+          { name: 'Resumé', type: 'link', to: '#' }
         ].map((item, index) => (
-          <Link
-            key={item.name}
-            to={item.to}
-            ref={el => menuItemsRef.current[index] = el}
-            onClick={toggleNav}
-            className="hover:underline text-white"
-          >
-            {item.name}
-          </Link>
+          item.type === 'scroll' ? (
+            <button
+              key={item.name}
+              onClick={() => scrollToSection(item.to)}
+              ref={el => menuItemsRef.current[index] = el}
+              className="hover:underline text-white"
+            >
+              {item.name}
+            </button>
+          ) : (
+            <Link
+              key={item.name}
+              to={item.to}
+              ref={el => menuItemsRef.current[index] = el}
+              onClick={toggleNav}
+              className="hover:underline text-white"
+            >
+              {item.name}
+            </Link>
+          )
         ))}
+
       </div>
     </div>
   );
