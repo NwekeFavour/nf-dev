@@ -92,7 +92,7 @@ function Header() {
             <p className="m-0 text-white title">FrontEnd{">"}</p>
           </div>
           <div className="md:hidden hidden lg:block">
-            <div><Link to={"/about-me"} className="hover:underline text-white">About Me</Link></div>
+            <div><Link to={"/about"} className="hover:underline text-white">About Me</Link></div>
             <div><a href={"#portfolio"} className="hover:underline text-white">Portfolio</a></div>
             <div><Link to={"https://x.com/uncleNf"} className="hover:underline text-white">X(fka twitter)</Link></div>
             <div><Link to={"https://github.com/NwekeFavour"} className="hover:underline text-white">Github</Link></div>

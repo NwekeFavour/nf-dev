@@ -6,9 +6,9 @@ function Footer(props) {
 
     return (
         <div className='border-t-1 border-gray-300 px-6 py-5'>
-            <div className="flex items-center justify-between text-gray-50">
+            <div className="sm:flex items-center justify-between text-gray-50">
                 <small className='md:text-[17px] text-[16px] name'>© Nweke Favour {currentYear}. All rights reserved.</small>
-                <ul className='flex items-center justify-between gap-4 uppercase footerli'>
+                <ul className='flex items-center justify-end sm:justify-between gap-4 uppercase footerli'>
                     <li>
                         <Link to={"https://x.com/uncleNf"} target="_blanket" rel="noopener">x
                         </Link>
