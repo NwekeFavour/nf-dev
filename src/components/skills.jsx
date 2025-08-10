@@ -9,7 +9,7 @@ const SKILLS = [
   "HTML",
   "CSS",
   "JavaScript",
-  "TypeScript",
+  "Nextjs",
   "React.js",
   "Vue.js",
   "Node.js",

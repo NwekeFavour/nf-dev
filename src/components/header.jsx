@@ -126,7 +126,7 @@ function Header() {
         {[
           { name: 'About Me', type: 'link', to: '/about' },
           { name: 'Portfolio', type: 'scroll', to: 'portfolio' }, // <— scroll type
-          { name: 'X (Twitter)', type: 'link', to: 'https://x.com/uncleNf' },
+          { name: 'X (fka Twitter)', type: 'link', to: 'https://x.com/uncleNf' },
           { name: 'Github', type: 'link', to: 'https://github.com/NwekeFavour' },
           { name: 'Resumé', type: 'link', to: '#' }
         ].map((item, index) => (
