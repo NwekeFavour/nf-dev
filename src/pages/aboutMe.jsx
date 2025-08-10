@@ -9,7 +9,7 @@ function About(props) {
         <div>
             <Header />
             <div className='flex justify-center items-center md:my-5 my-4 '>
-                <img src={Auto} className='lg:w-[500px] md:w-[400px] sm:w-[350px] w-[300px] border border-gray-300 rounded-[20px]' alt="" />
+                <img src={Auto} className='lg:w-[500px] md:w-[400px] sm:w-[350px] w-[300px] rounded-[20px]' alt="" />
             </div>
             <div className='md:w-[80%] mx-auto w-[90%]'>
                 <p className="m-0 md:text-[20px] lg:text-[22px] text-[17px] text-gray-300">About Me</p>
