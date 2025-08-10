@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux';
 import Contact from '../components/contact';
 import Skills from '../components/skills';
 import Footer from '../components/footer';
+import Coding from '../assets/img/coding.svg'
+import Digital from '../assets/img/digital.svg';
 
 function Home() {
   const frontRef = useRef(null);
@@ -99,14 +101,17 @@ function Home() {
             </div>
         </div>
       </div>
-      <div id='portfolio' className='lg:ms-8 md:ms-4 ms-3'>
+      <div className='flex justify-center items-center md:my-5 my-4'>
+        <img src={Coding} className='lg:w-[500px] md:w-[400px] w-[320px]' alt="" />
+      </div>
+      <div id='portfolio' className=''>
         <div>
-            <p className="m-0 text-gray-50 lg:text-[20px] md:text-[19px] sm:text-[18px] text-[17px]">
+            <p className="m-0 text-gray-50 ms-3 lg:ms-8 md:ms-4 lg:text-[20px] md:text-[19px] sm:text-[18px] text-[17px]">
                 Projects
             </p>
         </div>
         <div className='lg:mx-5 md:mx-3 mx-2 my-6'>
-          <div className='lg:w-[80%] md:w-[85%] mx-auto'> 
+          <div className='lg:w-[80%] w-[100%] md:w-[85%] mx-auto'> 
             {projects && projects.length > 0 && projects.map((project, index) => (
               <Link key={project.id} to={`${project.link}`} className=' hover:text-[#aaaaaa]'>
                 <div className='flex  md:mt-4 sm:mt-3 mt-4 justify-between'>
@@ -116,11 +121,11 @@ function Home() {
                     </p>
                     <div className='flex md:mt-3 mt-2  items-center gap-3'>
                       <div>
-                        <p className="m-0 text-gray-100 uppercase proj">{project.tech.join(', ')}</p>
+                        <p className="m-0 text-gray-100 md:text-[16px] sm:text-[14px] text-[13px] uppercase proj ">{project.tech.join(', ')}</p>
                       </div>
                     </div>
                     <div>
-                      <p className="m-0 text-gray-100">{project.summary}</p>
+                      <p className="m-0 text-gray-100 md:text-[15px] sm:text-[13.5px] text-[13px]">{project.summary}</p>
                     </div>
                   </div>
                   <div>
@@ -138,10 +143,13 @@ function Home() {
           <div>
             <Contact/>
             <div className='md:my-10 my-8'>
-              <p className="m-0 text-gray-100 text-center">
+              <p className="m-0 text-gray-100 text-justify">
                 I'm open to helping you design, refine, or build seamless user experiences, whether it's a new idea or an existing product. let's connect and create something impactful
               </p>
             </div>
+          </div>
+          <div className='flex justify-center items-center md:my-7 my-6'>
+            <img src={Digital} className='lg:w-[600px] md:w-[400px] w-[320px]' alt="" />
           </div>
           <div className='md:mt-10 mt-6'>
             <div className='flex items-center justify-center'>
@@ -150,10 +158,10 @@ function Home() {
                 <p className="m-0 text-gray-300 text-center my-3">(●'◡'●)</p>
               </div>
             </div>
-            <div className='lg:w-[80%] w-[90%] md:w-[85%] mx-auto'>
+            <div className='lg:w-[80%] w-[100%] md:w-[85%] mx-auto'>
               <p className="m-0 text-blue-50 text-center text-[16px] md:text-[17px]">I’ve evolved from learning the fundamentals of web development, HTML, CSS, and JavaScript—to building interactive, user-focused applications using modern frameworks like <span className='text-gray-500'>React.js, Vue.js, and Next.js</span>. I gradually expanded my skills by exploring responsive design principles, DOM manipulation, and <span className='text-gray-500'>component-based</span> architecture while improving my understanding of clean <span className='text-gray-500'>UI/UX patterns and accessibility</span>.</p>
             </div>
-            <div className='lg:w-[80%] w-[90%] md:w-[85%] mx-auto mt-6'>
+            <div className='lg:w-[80%] w-[100%] md:w-[85%] mx-auto mt-6'>
               <p className="m-0 text-blue-50 text-center text-[16px] md:text-[17px]">Through these experiences, I’ve also developed strong soft skills that have shaped how I approach projects and collaboration. I’ve learned to communicate clearly with team members and clients, <span className='text-gray-500'>manage time</span> effectively under deadlines, adapt quickly to new tools and challenges, and stay committed to problem-solving with a detail-oriented mindset. <span className='text-gray-500'>Working in diverse environments</span> has strengthened my ability to collaborate, stay organized, and take initiative when leading or <span className='text-gray-500'>contributing to tasks</span>.</p>
             </div>
           </div>

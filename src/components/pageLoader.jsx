@@ -38,7 +38,7 @@ const PageLoader = ({ onComplete }) => {
     >
       {/* Your existing text */}
       <div className="fixed top-[50px] start-[30px] md:w-[30%] sm:w-[35%] w-[40%] xl:w-[23%] lg:w-[30%]">
-        <h1 className="lg:text-3xl load md:text-2xl text-2xl font-bold text-gray-300">
+        <h1 className="lg:text-3xl load md:text-2xl text-[20px] font-bold text-gray-300">
           Nweke Favour Portfolio ©{currentYear}
         </h1>
       </div>
