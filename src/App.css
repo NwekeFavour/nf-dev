@@ -50,20 +50,20 @@ html{
 
 @media screen and (max-width: 530px) {
   .hero__title__top {
-    font-size: 5rem;
+    font-size: 3.4rem;
   }
     .hero__title__bottom{
-    font-size: 5rem;    
+    font-size: 3.4rem;    
   }
   .fix{
     width: 49%;
   }
 }@media screen and (max-width: 400px) {
   .hero__title__top {
-    font-size: 5rem;
+    font-size: 3.6rem;
   }
   .hero__title__bottom{
-    font-size: 5rem;    
+    font-size: 3.6rem;    
   }
   .fix{
     width: 50%;
@@ -71,10 +71,10 @@ html{
 }
 @media screen and (max-width: 380px) {
   .hero__title__top {
-    font-size: 4rem;
+    font-size: 3rem;
   }
     .hero__title__bottom{
-    font-size: 4rem;    
+    font-size: 3rem;    
   }
   .fix{
     font-size: 1.45rem;

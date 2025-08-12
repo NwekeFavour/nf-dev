@@ -55,38 +55,38 @@ function Home() {
   return (
     <div>
       <Header />
-      <div className="sm:flex flex-col items-center justify-center text-center mt-10">
+      <div className="sm:flex ms-3 lg:ms-8 md:ms-4 flex-col items-center justify-start justify mt-10">
         {/* First Line */}
         <h1
-          className="hero__title__top lg:text-[255px] md:text-[190px] sm:text-[135px] text-[6rem] xl:text-[19rem]  md:tracking-[-30px] tracking-[-2px] leading-[100%]"
+          className="hero__title__top w-[100%] lg:text-[160px] md:text-[120px] sm:text-[80px] text-[5rem] xl:text-[10rem]  md:tracking-[-10px] tracking-[-2px] leading-[100%]"
           style={{ overflow: 'unset' }}
         >
           <span ref={frontRef} className="hero__hover text-[#9f9fa9]  ">
-            FRONT
+            Turning  Ideas
           </span>
         </h1>
 
         {/* Second Line */}
         <h1
-          className="hero__title__bottom sm:flex items-center justify-center lg:text-[255px]  sm:text-[135px]  tracking-[-2px] leading-[100%] md:text-[190px] text-[112px] xl:text-[19rem]  md:tracking-[-30px]" 
+          className="hero__title__bottom  w-[100%] sm:flex items-center lg:text-[160px]  sm:text-[80px]  tracking-[-2px] leading-[100%] md:text-[120px] text-[5rem] xl:text-[10rem]  md:tracking-[-10px] " 
           style={{ overflow: 'unset' }}
         >
-          <span
+          {/* <span
             ref={dashRef}
             className="hero__title__dash text-[#9f9fa9] px-4 tracking-[0.2em]"
           >
             —
-          </span>
+          </span> */}
           <span ref={endRef} className="hero__hover   text-[#9f9fa9]">
-            END
+            into Elegant
           </span>
         </h1>
         <h1
-          className="hero__title__top lg:text-[255px] md:text-[190px] sm:text-[135px] text-[6rem] xl:text-[19rem]  md:tracking-[-30px] tracking-[-2px] leading-[100%]"
+          className="hero__title__top w-[100%] lg:text-[160px] md:text-[120px] sm:text-[80px] text-[5rem] xl:text-[10rem]  md:tracking-[-10px] tracking-[-2px] leading-[100%]"
           style={{ overflow: 'unset' }}
         >
           <span ref={engRef} className="hero__hover text-[#9f9fa9]  ">
-            ENGINEER
+            Code
           </span>
         </h1>
       </div>
