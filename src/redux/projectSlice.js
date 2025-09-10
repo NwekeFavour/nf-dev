@@ -4,10 +4,10 @@ const initialState = {
     projects: [
         {
             id: 1,
-            title: "Face Card",
-            tech: ["React.js", "TailwindCSS", "shadcn/ui", "Vercel"],
-            summary: "Resume Builder Responsive Website Design",
-            link: "https://facecard-beta.vercel.app"
+            title: "OK Agency",
+            tech: ["React.js", "TailwindCSS", "redux", "shadcn/ui", "Vercel"],
+            summary: "Modern agency website highlighting services, projects, and team with responsive design",
+            link: "https://ok-agency.vercel.app/"
         },
         {
             id: 2,

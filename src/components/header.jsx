@@ -104,7 +104,7 @@ function Header() {
             <div><a href={"#portfolio"} className="hover:underline text-white">Portfolio</a></div>
             <div><Link to={"https://x.com/uncleNf"} className="hover:underline  text-white">X(fka twitter)</Link></div>
             <div><Link to={"https://github.com/NwekeFavour"} className="hover:underline text-white">Github</Link></div>
-            <div><Link to={"https://drive.google.com/file/d/13WvVm27GezY-BL-lr36yGNKu4ZVqZ5fF/view?usp=drivesdk"}  className="hover:underline text-white">Resumé</Link></div>
+            <div><Link to={"https://drive.google.com/file/d/1CgamFzVuuto6NtV4JAEYGdT7nIdp8OcY/view?usp=drive_link"}  className="hover:underline text-white">Resumé</Link></div>
             
           </div>
         </div>
@@ -128,7 +128,7 @@ function Header() {
           { name: 'Portfolio', type: 'scroll', to: 'portfolio' }, // <— scroll type
           { name: 'X (fka Twitter)', type: 'link', to: 'https://x.com/uncleNf' },
           { name: 'Github', type: 'link', to: 'https://github.com/NwekeFavour' },
-          { name: 'Resumé', type: 'link', to: '#' }
+          { name: 'Resumé', type: 'link', to: 'https://drive.google.com/file/d/1CgamFzVuuto6NtV4JAEYGdT7nIdp8OcY/view?usp=drive_link' }
         ].map((item, index) => (
           item.type === 'scroll' ? (
             <button
