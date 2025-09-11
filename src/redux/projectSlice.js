@@ -28,7 +28,7 @@ const initialState = {
             title: "FoodBox",
             tech: ["HTML", "VanillaCSS", "Javascript", "Vercel"],
             summary: "A Restaurant's Landing Page",
-            link: "https://food-box.landing-page.cercel.app"
+            link: "https://food-box.landing-page.vercel.app"
         }
     ]
 }
