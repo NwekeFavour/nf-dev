@@ -128,7 +128,7 @@ function Header() {
           { name: 'Portfolio', type: 'scroll', to: 'portfolio' }, // <— scroll type
           { name: 'X (fka Twitter)', type: 'link', to: 'https://x.com/uncleNf' },
           { name: 'Github', type: 'link', to: 'https://github.com/NwekeFavour' },
-          { name: 'Resumé', type: 'link', to: 'https://drive.google.com/file/d/1CgamFzVuuto6NtV4JAEYGdT7nIdp8OcY/view?usp=drive_link' }
+          { name: 'Resumé', type: 'link', to: 'https://drive.google.com/file/d/1v5FGYBXUQaWD2xQOGLOXDX9x6_Q4L8xz  /view?usp=drive_link ' }
         ].map((item, index) => (
           item.type === 'scroll' ? (
             <button

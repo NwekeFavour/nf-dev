@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     projects: [
         {
-            id: 1,
-            title: "OK Agency",
-            tech: ["React.js", "TailwindCSS", "redux", "shadcn/ui", "Vercel"],
-            summary: "Modern agency website highlighting services, projects, and team with responsive design",
-            link: "https://ok-agency.vercel.app/"
+        id: 1,
+        title: "Codex Technology Solutions",
+        tech: ["Next.js", "TailwindCSS", "redux", "shadcn/ui", "Cpanel(Hosting)"],
+        summary: "Developed a responsive agency website for Codex Technology Solutions, showcasing services and projects with a clean, modern interface.",
+        link: "https://www.codex.ng"
         },
         {
             id: 2,
@@ -25,10 +25,10 @@ const initialState = {
         },
         {
             id: 4,
-            title: "FoodBox",
-            tech: ["HTML", "VanillaCSS", "Javascript", "Vercel"],
-            summary: "A Restaurant's Landing Page",
-            link: "https://food-box.landing-page.vercel.app"
+            title: "Sompu",
+            tech: ["Next.js", "TailwindCSS", "Shadcn", "Vercel"],
+            summary: "Created Sompu, a responsive link-in-bio site with a clean and user-friendly interface.",
+            link: "https://sompu.vercel.app"
         }
     ]
 }
