@@ -1,178 +1,384 @@
-import React, { useEffect, useRef } from 'react';
-import Header from '../components/header';
-import gsap from 'gsap';
-import SplitType from 'split-type';
-import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Contact from '../components/contact';
-import Skills from '../components/skills';
-import Footer from '../components/footer';
-import Coding from '../assets/img/coding.svg'
-import Digital from '../assets/img/digital.svg';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-function Home() {
-  const frontRef = useRef(null);
-  const dashRef = useRef(null);
-  const endRef = useRef(null);
-  const engRef = useRef(null);
-  const titleRef = useRef(null);
-  const projects = useSelector((state) => state.projects.projects)
+gsap.registerPlugin(ScrollTrigger);
 
+const MODE_CONTENT = {
+  engineer: {
+    word: 'run on',
+    sub: (
+      <>
+        <b>Full-stack developer</b> shipping event, commerce, and services
+        platforms end to end,  from frontend interfaces to backend
+        architecture, payment flows to deployment, with a habit of writing
+        the campaign copy that gets the product noticed.
+      </>
+    ),
+  },
+  marketer: {
+    word: 'talk about',
+    sub: (
+      <>
+        <b>Growth-minded builder</b> who writes the onboarding emails, promo
+        campaigns, and UGC content strategy for the same products they
+        engineer,  because the best pitch for a feature is understanding
+        exactly how it was built.
+      </>
+    ),
+  },
+};
+
+const ENGINEERING_TAGS = [
+  'Frontend Development', 'Backend Architecture', 'Database Design',
+  'Payment Integrations', 'API Development', 'Cloud Deployment',
+  'Multi-tenant Systems', 'Authentication & Security', 'State Management',
+  'Performance Optimization',
+];
+
+const MARKETING_TAGS = [
+  'UGC content strategy', 'Brand voice', 'Campaign copy',
+  'Onboarding & lifecycle email', 'Landing page conversion',
+  'Referral / promo systems', 'Product storytelling',
+];
+
+export default function Home() {
+  const [mode, setModeState] = useState('engineer');
+  const projects = useSelector((state) => state.projects.projects);
+  const glowRef = useRef(null);
+  const heroWordRef = useRef(null);
+  const heroSubRef = useRef(null);
+  const rootRef = useRef(null);
+
+  // Cursor-follow glow
   useEffect(() => {
-    const frontSplit = new SplitType(frontRef.current, { types: 'chars' });
-    const dashSplit = new SplitType(dashRef.current, { types: 'chars' });
-    const endSplit = new SplitType(endRef.current, { types: 'chars' });
-    const engSplit = new SplitType(engRef.current, { types: 'chars' });
-    const titleSplit = new SplitType(titleRef.current, { types: 'chars' });
-
-    const allChars = [...frontSplit.chars, ...dashSplit.chars, ...endSplit.chars, ...engSplit.chars];
-    const titleChars = [...titleSplit.chars]
-
-    gsap.from(allChars, {
-      y: 100,
-      autoAlpha: 0,
-      stagger: 0.05,
-      duration: 1,
-      ease: 'power4.out',
-    });
-    gsap.from(titleChars, {
-      x: 10,
-      autoAlpha: 0,
-      stagger: 0.04,
-      duration: 1,
-      ease: 'power4.out',
-    });
-
-    return () => {
-      frontSplit.revert();
-      dashSplit.revert();
-      endSplit.revert();
-      engSplit.revert();
+    const handleMove = (e) => {
+      if (!glowRef.current) return;
+      gsap.to(glowRef.current, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.6,
+        ease: 'power3.out',
+      });
     };
+    window.addEventListener('mousemove', handleMove);
+    return () => window.removeEventListener('mousemove', handleMove);
   }, []);
 
-  return (
-    <div>
-      <Header />
-      <div className="sm:flex ms-3 lg:ms-8 md:ms-4 flex-col items-center justify-start justify mt-10">
-        {/* First Line */}
-        <h1
-          className="hero__title__top w-[100%] lg:text-[160px] md:text-[120px] sm:text-[80px] text-[5rem] xl:text-[10rem]  md:tracking-[-10px] tracking-[-2px] leading-[100%]"
-          style={{ overflow: 'unset' }}
-        >
-          <span ref={frontRef} className="hero__hover text-[#9f9fa9]  ">
-            Turning  Ideas
-          </span>
-        </h1>
+  // Load-in sequence + scroll reveals
+  // Wrapped in gsap.context() so cleanup can fully REVERT every inline
+  // style GSAP applied (not just stop the tween). React 18 StrictMode
+  // mounts effects twice in dev; without revert(), the first throwaway
+  // run's .from() leaves elements at a partial opacity/position, and the
+  // second run animates "back to" that partial state instead of 1/0 , 
+  // which is why the nav (and hero content) can flash in then settle
+  // faint or invisible.
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const chars = rootRef.current.querySelectorAll(
+        'h1.headline .line span span'
+      );
+      gsap.set(chars, { y: '110%' });
 
-        {/* Second Line */}
-        <h1
-          className="hero__title__bottom  w-[100%] sm:flex items-center lg:text-[160px]  sm:text-[80px]  tracking-[-2px] leading-[100%] md:text-[120px] text-[5rem] xl:text-[10rem]  md:tracking-[-10px] " 
-          style={{ overflow: 'unset' }}
-        >
-          {/* <span
-            ref={dashRef}
-            className="hero__title__dash text-[#9f9fa9] px-4 tracking-[0.2em]"
-          >
-            —
-          </span> */}
-          <span ref={endRef} className="hero__hover   text-[#9f9fa9]">
-            into Elegant
-          </span>
-        </h1>
-        <h1
-          className="hero__title__top w-[100%] lg:text-[160px] md:text-[120px] sm:text-[80px] text-[5rem] xl:text-[10rem]  md:tracking-[-10px] tracking-[-2px] leading-[100%]"
-          style={{ overflow: 'unset' }}
-        >
-          <span ref={engRef} className="hero__hover text-[#9f9fa9]  ">
-            Code
-          </span>
-        </h1>
-      </div>
-      <div className='flex sm:my-4 md:my-5 my-3 items-center justify-center'>
-        <div className='sm:w-[80%] w-[90%]'>
+      gsap
+        .timeline({ delay: 0.2 })
+        .to(chars, {
+          y: '0%',
+          duration: 1,
+          stagger: 0.012,
+          ease: 'power4.out',
+        })
+        .from(
+          '.hero-sub',
+          { opacity: 0, y: 16, duration: 0.8, ease: 'power2.out' },
+          '-=0.5'
+        )
+        .from(
+          '.hero-meta > div',
+          { opacity: 0, y: 12, duration: 0.6, stagger: 0.08, ease: 'power2.out' },
+          '-=0.4'
+        )
+        .from('.scroll-cue', { opacity: 0, duration: 0.6 }, '-=0.3')
+        .from('nav', { y: -20, opacity: 0, duration: 0.6, ease: 'power2.out' }, 0);
+
+      gsap.utils.toArray('.reveal').forEach((el) => {
+        gsap.to(el, {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%' },
+        });
+      });
+
+      gsap.utils.toArray('.case').forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 24,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%' },
+        });
+      });
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const setMode = (next) => {
+    if (next === mode) return;
+    const c = MODE_CONTENT[next];
+
+    gsap.to(heroWordRef.current, {
+      opacity: 0,
+      duration: 0.2,
+      onComplete: () => {
+        setModeState(next);
+        gsap.to(heroWordRef.current, { opacity: 1, duration: 0.3 });
+      },
+    });
+    gsap.to(heroSubRef.current, { opacity: 0, y: 6, duration: 0.25 });
+  };
+
+  useEffect(() => {
+    gsap.to(heroSubRef.current, { opacity: 1, y: 0, duration: 0.35 });
+  }, [mode]);
+
+  const current = MODE_CONTENT[mode];
+
+  return (
+    <div ref={rootRef} data-mode={mode} className="pf-root">
+      <div className="noise" />
+      <div className="glow" ref={glowRef} />
+
+      <div className="wrap">
+        <nav>
+          <div className="logo text-white!">
+            N<em>.</em> Favour
+          </div>
+          <div className="nav-links">
+            <a className="text-white!" href="#work">Work</a>
+            <a href="#skills">Skills</a>
+            <a href="#approach">Approach</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div className="mode-toggle" role="group" aria-label="Portfolio mode">
+            <button
+              className={mode === 'engineer' ? 'active' : ''}
+              onClick={() => setMode('engineer')}
+            >
+              &lt;/&gt; Engineer
+            </button>
+            <button
+              className={mode === 'marketer' ? 'active' : ''}
+              onClick={() => setMode('marketer')}
+            >
+              ▲ Marketer
+            </button>
+          </div>
+        </nav>
+
+        {/* HERO */}
+        <section className="hero">
+          <p className="eyebrow">Abuja, Nigeria - Full-Stack Developer</p>
+          <h1 className="headline">
+            <SplitLine text="I build the products" />
+            <span className="line">
+              <span className="text-[32px]! md:text-[50px]! sm:text-[42px]! lg:text-[80px]!">
+                <CharsOnly text="Nigerian brands " />
+                <span className="accent-word text-[32px]! md:text-[50px]! sm:text-[42px]! lg:text-[80px]!" ref={heroWordRef}>
+                  {current.word}
+                </span>
+              </span>
+            </span>
+          </h1>
+          <p className="hero-sub " ref={heroSubRef}>
+            {current.sub}
+          </p>
+          <div className="hero-meta">
             <div>
-                <p className="m-0 text-white ">Nweke Favour</p>
-                <i className="text-[#969696]" ref={titleRef}>Frontend Engineer</i>
+              <div className="num">4+</div>
+              <div className="label">Years of Experience</div>
             </div>
-            <div className='md:my-4 sm:my-3 my-2'>
-                <p className="m-0 sm:text-[14px] text-[13px] md:text-[15px] lg:text-[16px]  text-gray-300">I'm a dedicated frontend engineer with a strong focus on creating clean, responsive, and <span className='m-0 text-gray-500'>user-friendly interfaces.</span> With experience in tools like React, NextJs, Vue, and TailwindCSS, I’ve worked on real projects that emphasize both <span className='text-gray-500'>performance and accessibility</span>. I enjoy solving design challenges and turning ideas into intuitive digital experiences. Constantly learning and refining my skills, I'm eager to contribute to a team where creativity, <span className='text-gray-500'>collaboration</span>, and innovation drive the work, and where I can continue building solutions that are both functional and impactful.</p>
+            <div>
+              <div className="num">10+</div>
+              <div className="label">Live SaaS platforms</div>
             </div>
-        </div>
-      </div>
-      <div className='flex justify-center items-center md:my-5 my-4'>
-        <img src={Coding} className='lg:w-[500px] md:w-[400px] w-[320px]' alt="" />
-      </div>
-      <div id='portfolio' className=''>
-        <div>
-            <p className="m-0 text-gray-50 ms-3 lg:ms-8 md:ms-4 lg:text-[20px] md:text-[19px] sm:text-[18px] text-[17px]">
-                Projects
-            </p>
-        </div>
-        <div className='lg:mx-5 md:mx-3 mx-2 my-6'>
-          <div className='lg:w-[80%] w-[100%] md:w-[85%] mx-auto'> 
-            {projects && projects.length > 0 && projects.map((project, index) => (
-              <Link key={project.id} to={`${project.link}`} className=' hover:text-[#aaaaaa]'>
-                <div className='flex  md:mt-4 sm:mt-3 mt-4 justify-between'>
-                  <div>
-                    <p className='m-0 hover:text-[#dad5dc] text-gray-500'>
-                      {project.title}
-                    </p>
-                    <div className='flex md:mt-3 mt-2  items-center gap-3'>
-                      <div>
-                        <p className="m-0 text-gray-100 md:text-[16px] sm:text-[14px] text-[13px] uppercase proj ">{project.tech.join(', ')}</p>
-                      </div>
-                    </div>
-                    <div>
-                      <p className="m-0 text-gray-100 md:text-[15px] sm:text-[13.5px] text-[13px]">{project.summary}</p>
-                    </div>
-                  </div>
-                  <div>
-                    <ArrowUpRight className='text-gray-100 hover:text-[#aaaaaa]'/>
-                  </div>
-                </div>
-                <div className='bg-gray-500 mt-3 h-[2px] w-full'></div>
-              </Link>
-            ))
-            }
-            <div className='md:my-3 my-2 flex items-center justify-end'>
-              <Link className='text-gray-100 hover:underline cursor-pointer' to={"https://github.com/NwekeFavour"}>View More</Link>
+            <div>
+              <div className="num">01</div>
+              <div className="label">Person doing both</div>
             </div>
           </div>
-          <div>
-            <Contact/>
-            <div className='md:my-10 my-8'>
-              <p className="m-0 text-gray-100 text-justify">
-                I'm open to helping you design, refine, or build seamless user experiences, whether it's a new idea or an existing product. let's connect and create something impactful
+          <div className="scroll-cue bottom-[-80px] lg:bottom-[20px] md:bottom-[40px] ">
+            <span>Scroll</span>
+            <span className="dash" />
+          </div>
+        </section>
+
+        {/* SKILLS */}
+        <section className="skills" id="skills">
+          <div className="section-head">
+            <span className="section-title">What I bring</span>
+            <span className="section-tag">01 / Skills</span>
+          </div>
+          <div className="skill-cols">
+            <div className="skill-col reveal">
+              <h3>Engineering</h3>
+              <p className="desc">
+                The systems side, architecture, integrations, and the
+                unglamorous plumbing that keeps a multi-tenant platform
+                standing at 2am.
               </p>
-            </div>
-          </div>
-          <div className='flex justify-center items-center md:my-7 my-6'>
-            <img src={Digital} className='lg:w-[600px] md:w-[400px] w-[320px]' alt="" />
-          </div>
-          <div className='md:mt-10 mt-6'>
-            <div className='flex items-center justify-center'>
-              <div className='lg:w-[200px] '>
-                <p className="m-0 text-blue-100 lg:text-[26px] md:text-[24px] sm:text-[22px] text-[20px] text-center">Over the Years</p>
-                <p className="m-0 text-gray-300 text-center my-3">(●'◡'●)</p>
+              <div className="tag-cloud">
+                {ENGINEERING_TAGS.map((t) => (
+                  <span className="tag" key={t}>
+                    {t}
+                  </span>
+                ))}
               </div>
             </div>
-            <div className='lg:w-[80%] w-[100%] md:w-[85%] mx-auto'>
-              <p className="m-0 text-blue-50 text-center text-[16px] md:text-[17px]">I’ve evolved from learning the fundamentals of web development, HTML, CSS, and JavaScript—to building interactive, user-focused applications using modern frameworks like <span className='text-gray-500'>React.js, Vue.js, and Next.js</span>. I gradually expanded my skills by exploring responsive design principles, DOM manipulation, and <span className='text-gray-500'>component-based</span> architecture while improving my understanding of clean <span className='text-gray-500'>UI/UX patterns and accessibility</span>.</p>
-            </div>
-            <div className='lg:w-[80%] w-[100%] md:w-[85%] mx-auto mt-6'>
-              <p className="m-0 text-blue-50 text-center text-[16px] md:text-[17px]">Through these experiences, I’ve also developed strong soft skills that have shaped how I approach projects and collaboration. I’ve learned to communicate clearly with team members and clients, <span className='text-gray-500'>manage time</span> effectively under deadlines, adapt quickly to new tools and challenges, and stay committed to problem-solving with a detail-oriented mindset. <span className='text-gray-500'>Working in diverse environments</span> has strengthened my ability to collaborate, stay organized, and take initiative when leading or <span className='text-gray-500'>contributing to tasks</span>.</p>
+            <div className="skill-col reveal">
+              <h3>Marketing &amp; Growth</h3>
+              <p className="desc">
+                The audience side ,  because a well-built platform still needs
+                someone who can explain why it matters and get people to show
+                up.
+              </p>
+              <div className="tag-cloud">
+                {MARKETING_TAGS.map((t) => (
+                  <span className="tag" key={t}>
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-          <div>
-            <Skills/>
+        </section>
+
+        {/* WORK */}
+        <section className="work" id="work">
+          <div className="section-head flex-wrap space-y-4">
+            <span className="section-title">Selected work</span>
+            <span className="section-tag">02 / Case Studies</span>
           </div>
-        </div>
+
+          {projects &&
+            projects.length > 0 &&
+            projects.map((p, i) => (
+              <a
+                className="case reveal"
+                key={p.id}
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="case-index">{String(i + 1).padStart(2, '0')}</div>
+                <div className="case-left">
+                  <div className="case-title">{p.title}</div>
+                  <div className="case-tags">
+                    {p.tech.map((t) => (
+                      <span key={t}>{t}</span>
+                    ))}
+                  </div>
+                </div>
+                <div className="case-right">
+                  <p className="case-desc">{p.summary}</p>
+                </div>
+                <div className="case-arrow">↗</div>
+              </a>
+            ))}
+        </section>
+
+        {/* APPROACH */}
+        <section className="approach" id="approach">
+          <div className="section-head">
+            <span className="section-title">How I work</span>
+            <span className="section-tag">03 / Approach</span>
+          </div>
+          <div className="approach-grid">
+            <p className="approach-quote md:text-[24px] text-[20px] reveal">
+              A product isn't finished when it <em>ships</em> ,  it's finished
+              when someone <em>uses</em> it and someone else{' '}
+              <em>hears about it</em>. I stay close to both ends.
+            </p>
+            <div className="approach-steps reveal">
+              <div className="approach-step">
+                <span className="n">01</span>
+                <p>
+                  <b>Build for the real constraint.</b> Nigerian-market
+                  products live and die on payment reliability, low
+                  bandwidth, and trust ,  I design for that from the first
+                  commit.
+                </p>
+              </div>
+              <div className="approach-step">
+                <span className="n">02</span>
+                <p>
+                  <b>Ship, then measure.</b> I'd rather have something live
+                  and imperfect than perfect and unreleased ,  iteration beats
+                  prediction.
+                </p>
+              </div>
+              <div className="approach-step">
+                <span className="n">03</span>
+                <p>
+                  <b>Write the words myself.</b> Onboarding emails, promo
+                  copy, landing pages ,  the person who built the feature
+                  usually explains it best.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CONTACT */}
+        <section className="contact" id="contact">
+          <p className="eyebrow">Let's talk</p>
+          <h2 className="contact-title  lg:text-[30px] text-[24px]">
+            Got something to <em>build</em>, or a story to <em>tell</em>?
+            Both, ideally.
+          </h2>
+          <div className="contact-row">
+            <a href="mailto:hmu@heyunclenf.dev" className="contact-email">
+              hmu@heyunclenf.dev
+            </a>
+            <div className="contact-links">
+              <a href="#">Github</a>
+              <a href="#">LinkedIn</a>
+              <a href="#">X</a>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          © 2026 Nweke Favour,  Built with Pure Intentions, and a healthy dislike
+          of templates.
+        </footer>
       </div>
-      <Footer/>
     </div>
   );
 }
 
-export default Home;
+/* Renders a headline line pre-split into per-character spans so the
+   load-in stagger animation (see useEffect above) can animate them. */
+function SplitLine({ text }) {
+  return (
+    <span className="line text-[32px]! md:text-[50px]! sm:text-[42px]! lg:text-[80px]!">
+      <span>
+        <CharsOnly text={text} />
+      </span>
+    </span>
+  );
+}
+
+function CharsOnly({ text }) {
+  return (
+    <>
+      {[...text].map((ch, i) => (
+        <span key={i}>{ch === ' ' ? '\u00A0' : ch}</span>
+      ))}
+    </>
+  );
+}
+
