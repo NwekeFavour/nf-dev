@@ -30,7 +30,7 @@ const initialState = {
       id: 4,
       title: "UseUptime",
       // TODO: swap these for the real stack — placeholder until you confirm
-      tech: ["React.js", "TailwindCSS", "Node.js", "MongoDB"],
+      tech: ["NextJS", "TailwindCSS", "Node.js", "PostgresDB"],
       // TODO: swap this for the real one-liner — placeholder until you confirm
       summary:
         "An uptime monitoring and status page tool for tracking service reliability and incident history.",
