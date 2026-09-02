@@ -344,9 +344,8 @@ export default function Home() {
               hmu@heyunclenf.dev
             </a>
             <div className="contact-links">
-              <a href="#">Github</a>
-              <a href="#">LinkedIn</a>
-              <a href="#">X</a>
+              <a href="https://github.com/NwekeFavour">Github</a>
+              <a href="https://x.com/uncleNf">X</a>
             </div>
           </div>
         </section>
